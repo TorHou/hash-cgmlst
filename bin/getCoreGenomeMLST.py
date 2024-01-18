@@ -65,7 +65,8 @@ class CgMLST:
 		blast_records = NCBIXML.parse( fp )
 		exact_matches = []
 		for record in blast_records:
-			locus = record.query[:-2] #get locus name from heading of fasta file
+			#locus = record.query[:-2] #get locus name from heading of fasta file
+			locus = record.query.split(" ")[0] #get locus name from heading of fasta file
 			self.matches[locus] = None #default to empty record
 			## should just be a single hit, i.e. one alignemnt, and one hsp within that alignment
 			if (len(record.alignments)==1):
